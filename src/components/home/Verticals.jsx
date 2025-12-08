@@ -108,32 +108,8 @@ const Verticals = () => {
     <section
       ref={sectionRef}
       id="verticals"
-      className="relative section lg:w-full lg:aspect-9/16 py-8 xl:mb-12 pb-72 md:pb-0"
+      className="relative section py-8 xl:mb-12 pb-72 md:pb-0"
     >
-      {/* Background images */}
-      {/* Mobile background */}
-      <div className="absolute inset-0 -z-10 md:hidden">
-        <Image
-          src="/home/gbuilding-potrait.webp"
-          alt="Mobile Background"
-          fill
-          priority
-          className="object-fill"
-        />
-      </div>
-
-      {/* Desktop background */}
-      <div className="absolute inset-0 -z-10 hidden md:block">
-        <Image
-          src="/home/gbuilding.webp"
-          alt="Desktop Background"
-          fill
-          priority
-          className="object-cover"
-        />
-      </div>
-
-      {/* Top content */}
       <div className="w-full md:w-xl lg:w-2xl xl:w-4xl mx-auto text-center space-y-4 md:mt-8">
         <h2 className="font-anton text-[#FCD901] text-2xl md:text-3xl lg:text-3xl">
           Our Ecosystem{" "}
@@ -147,19 +123,6 @@ const Verticals = () => {
           industry
         </h4>
       </div>
-      {/* Ensure all carousel cards have equal height by setting explicit minHeight and height styles */}
-      {/* <style jsx global>{` */}
-      {/* For mobile-only: Ensure slider track and slide take full height inside the container */}
-      {/* @media (max-width: 768px) { */}
-      {/*   .verticals-carousel-mobile .slick-slide > div { */}
-      {/*     height: 561px !important; */}
-      {/*   } */}
-      {/*   .verticals-carousel-mobile .slick-track { */}
-      {/*     display: flex !important; */}
-      {/*     align-items: stretch !important; */}
-      {/*   } */}
-      {/* } */}
-      {/* `}</style> */}
 
       <style jsx global>{`
         /* Force height for all slides */

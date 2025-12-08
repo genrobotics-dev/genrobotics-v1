@@ -55,7 +55,7 @@ const foundations = [
 function Foundation() {
   return (
     <section className="my-16 lg:my-24">
-      <div className="container mx-auto px-4 md:px-8 lg:px-12">
+      <div className="container mx-auto px-4 md:px-8 lg:p-12">
         <div className="flex flex-col-reverse lg:flex-row items-center lg:items-start gap-8">
           {/* LEFT COLUMN: Vertical Carousel (Desktop) / Horizontal (Mobile) */}
           <div className="w-full lg:w-1/2 flex justify-center lg:justify-end flex-1">
