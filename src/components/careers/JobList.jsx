@@ -1,9 +1,14 @@
 "use client";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Link from "next/link";
 
 const JobList = ({ jobs, itemsPerPage = 6 }) => {
   const [currentPage, setCurrentPage] = useState(1);
+
+  // Reset to first page when jobs list changes (e.g. new search)
+  useEffect(() => {
+    setCurrentPage(1);
+  }, [jobs]);
   const totalPages = Math.ceil(jobs.length / itemsPerPage);
   const startIndex = (currentPage - 1) * itemsPerPage;
   const endIndex = startIndex + itemsPerPage;
@@ -77,11 +82,10 @@ const JobList = ({ jobs, itemsPerPage = 6 }) => {
               <button
                 key={page}
                 onClick={() => handlePageChange(page)}
-                className={`px-3 py-1 rounded border text-sm ${
-                  currentPage === page
+                className={`px-3 py-1 rounded border text-sm ${currentPage === page
                     ? "bg-[#FCD901] text-black border-[#FCD901]"
                     : "text-gray-400 border-gray-400"
-                }`}
+                  }`}
               >
                 {page}
               </button>
@@ -97,11 +101,10 @@ const JobList = ({ jobs, itemsPerPage = 6 }) => {
                 <button
                   key={idx}
                   onClick={() => handlePageChange(page)}
-                  className={`px-3 py-1 rounded border text-sm ${
-                    currentPage === page
+                  className={`px-3 py-1 rounded border text-sm ${currentPage === page
                       ? "bg-[#FCD901] text-black border-[#FCD901]"
                       : "text-gray-400 border-gray-400"
-                  }`}
+                    }`}
                 >
                   {page}
                 </button>
