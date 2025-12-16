@@ -232,7 +232,7 @@ export default async function BlogDetailPage({ params }) {
         {cleanSummary && (
           <section>
             <h4 className="text-xl font-semibold mt-8 text-[#FCD901]">Summary</h4>
-            <p className="mb-8 text-gray-300 text-base sm:text-lg md:text-xl leading-relaxed text-justify">
+            <p className="mb-2 text-gray-200 text-xs sm:text-sm md:text-base leading-relaxed text-justify">
               {/* If summary includes HTML tags (unlikely), render as HTML; otherwise linkify plain URLs */}
               {/<[a-z][\s\S]*>/i.test(cleanSummary)
                 ? (

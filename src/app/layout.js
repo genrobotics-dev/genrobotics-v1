@@ -1,8 +1,9 @@
 import "./globals.css";
 import "@/styles/Style.scss";
-import "slick-carousel/slick/slick.css"; 
+import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import { roboto, anton, quattro } from './fonts';
+import SplashScreen from "@/components/SplashScreen";
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
 import BackToTop from "@/components/layout/BackToTop";
@@ -32,6 +33,7 @@ export default function RootLayout({ children }) {
         />
       </head>
       <body className={`${roboto.variable} ${anton.variable} ${quattro.variable} bg-black font-roboto`}>
+        <SplashScreen />
         <Navbar />
         <main className="pt-24 sm:pt-28 lg:pt-32">
           {children}
