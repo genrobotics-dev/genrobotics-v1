@@ -1,5 +1,5 @@
 "use client";
-import React, { useState,useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import JobSearchForm from "./JobSearchForm";
 import JobList from "./JobList";
 
@@ -16,7 +16,7 @@ const JobSearch = () => {
   }, [filteredJobs]);
 
   return (
-    <section className="section py-24 z-40">
+    <section className="relative section py-24 z-40">
       <h2 className="font-anton text-white text-center">
         Begin Your Search{" "}
         <span className="text-[#FCD901] block md:inline">

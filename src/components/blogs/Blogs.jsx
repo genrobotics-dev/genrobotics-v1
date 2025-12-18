@@ -64,16 +64,16 @@ export default function BlogsPage() {
     }
 
     return (
-        <section className="relative z-20 max-w-6xl mx-auto px-6 py-16 pointer-events-none">
+        <section className="relative z-20 max-w-6xl mx-auto px-6 py-16">
             {blogs.length === 0 ? (
                 <div className="flex flex-col items-center justify-center text-center py-16">
-                    <h2 className="text-white text-xl mt-6" style={{ cursor: 'text', pointerEvents: 'auto' }}>No posts yet,</h2>
-                    <p className="text-gray-400 mt-2" style={{ cursor: 'text', pointerEvents: 'auto' }}>
+                    <h2 className="text-white text-xl mt-6">No posts yet,</h2>
+                    <p className="text-gray-400 mt-2">
                         but exciting articles are on the way. Keep an eye out!
                     </p>
                 </div>
             ) : (
-                <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-10" style={{ pointerEvents: 'auto' }}>
+                <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-10">
                     {blogs.map((blog, i) => (
                         <div
                             key={i}

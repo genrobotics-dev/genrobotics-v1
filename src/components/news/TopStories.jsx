@@ -29,7 +29,7 @@ const TopStories = () => {
   }, []);
 
   return (
-    <section className="py-8 sm:py-12 space-y-6 sm:space-y-8 section px-4 sm:px-6">
+    <section className="relative py-8 sm:py-12 space-y-6 sm:space-y-8 section px-4 sm:px-6">
       <h2 className="font-anton text-white text-2xl sm:text-3xl md:text-4xl">
         Top <span className="text-[#FCD901]">Stories</span>
       </h2>

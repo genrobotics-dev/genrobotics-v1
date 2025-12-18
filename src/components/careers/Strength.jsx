@@ -72,7 +72,7 @@ const Strength = () => {
   }, []);
 
   return (
-    <section className="section space-y-12 lg:space-y-24 xl:space-y-36">
+    <section className="relative section space-y-12 lg:space-y-24 xl:space-y-36">
       {/* Top Reasons */}
       <div className="w-full flex">
         <div className="w-full">
@@ -123,9 +123,8 @@ const Strength = () => {
               {cultureData.map((item, i) => (
                 <li
                   key={i}
-                  className={`font-anton text-2xl 2xl:text-4xl tracking-wide transition-colors duration-300 ${
-                    activeIndex === i ? "text-[#FCD901]" : "text-white"
-                  }`}
+                  className={`font-anton text-2xl 2xl:text-4xl tracking-wide transition-colors duration-300 ${activeIndex === i ? "text-[#FCD901]" : "text-white"
+                    }`}
                 >
                   {item.title}
                 </li>

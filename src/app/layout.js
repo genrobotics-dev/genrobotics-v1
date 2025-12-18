@@ -17,7 +17,8 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en">
       <head>
-        <link rel="icon" type="image/png" href="/favicon_xmas.ico" sizes="any" />
+        <link rel="icon" type="image/x-icon" href="/favicon_xmas.ico" sizes="32x32" />
+        <link rel="icon" type="image/png" href="/favicon.png" sizes="48x48" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <meta name="referrer" content="strict-origin-when-cross-origin" />
         <script
@@ -27,7 +28,7 @@ export default function RootLayout({ children }) {
               "@context": "https://schema.org",
               "@type": "Organization",
               "url": "https://genrobotics.com/",
-              "logo": "https://genrobotics.com/favicon_xmas.ico",
+              "logo": "https://genrobotics.com/favicon.ico",
             }),
           }}
         />
