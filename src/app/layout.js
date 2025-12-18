@@ -27,7 +27,7 @@ export default function RootLayout({ children }) {
               "@context": "https://schema.org",
               "@type": "Organization",
               "url": "https://genrobotics.com/",
-              "logo": "https://genrobotics.com/favicon_xmas.io",
+              "logo": "https://genrobotics.com/favicon_xmas.ico",
             }),
           }}
         />
