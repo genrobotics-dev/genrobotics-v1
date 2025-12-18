@@ -152,8 +152,8 @@ export default async function CaseStudyDetailPage({ params }) {
       {/* Summary as content block */}
       {cs.data?.summary && (
         <section>
-          <h4 className="text-xl font-semibold mt-8 text-[#FCD901]">Summary</h4>
-          <p className="mb-8 text-gray-300 text-base sm:text-lg md:text-xl leading-relaxed text-justify">
+          <h4 className="text-xl font-semibold mt-8 text-[#FCD901]">SUMMARY</h4>
+          <p className="mb-2 text-gray-200 text-xs sm:text-sm md:text-base leading-relaxed text-justify">
             {/<[a-z][\s\S]*>/i.test(cs.data.summary) ? (
               <span dangerouslySetInnerHTML={{ __html: cs.data.summary }} />
             ) : (

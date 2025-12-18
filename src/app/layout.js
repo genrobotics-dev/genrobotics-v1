@@ -3,7 +3,7 @@ import "@/styles/Style.scss";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import { roboto, anton, quattro } from './fonts';
-import SplashScreen from "@/components/SplashScreen";
+//import SplashScreen from "@/components/SplashScreen";
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
 import BackToTop from "@/components/layout/BackToTop";
@@ -17,7 +17,7 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en">
       <head>
-        <link rel="icon" type="image/png" href="/favicon.png" sizes="any" />
+        <link rel="icon" type="image/png" href="/favicon_xmas.ico" sizes="any" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <meta name="referrer" content="strict-origin-when-cross-origin" />
         <script
@@ -27,13 +27,13 @@ export default function RootLayout({ children }) {
               "@context": "https://schema.org",
               "@type": "Organization",
               "url": "https://genrobotics.com/",
-              "logo": "https://genrobotics.com/favicon.ico",
+              "logo": "https://genrobotics.com/favicon_xmas.io",
             }),
           }}
         />
       </head>
       <body className={`${roboto.variable} ${anton.variable} ${quattro.variable} bg-black font-roboto`}>
-        <SplashScreen />
+        {/* <SplashScreen /> */}
         <Navbar />
         <main className="pt-24 sm:pt-28 lg:pt-32">
           {children}
