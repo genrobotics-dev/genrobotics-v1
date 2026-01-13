@@ -7,7 +7,7 @@ import { roboto, anton, quattro } from './fonts';
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
 import BackToTop from "@/components/layout/BackToTop";
-
+import { GoogleAnalytics } from '@next/third-parties/google'
 export const metadata = {
   title: "Genrobotics | Robotics & AI Solutions for Sanitation, Healthcare & Industrial Sectors",
   description: "Genrobotics develops robotics and AI solutions across sanitation, healthcare, oil & gas, and research, delivering safe, reliable, and efficient operations.",
@@ -18,7 +18,7 @@ export default function RootLayout({ children }) {
     <html lang="en">
       <head>
         <link rel="icon" type="image/png" href="/favicon.png" sizes="48x48" />
-        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />  
         <meta name="referrer" content="strict-origin-when-cross-origin" />
         <script
           type="application/ld+json"
@@ -34,6 +34,7 @@ export default function RootLayout({ children }) {
       </head>
       <body className={`${roboto.variable} ${anton.variable} ${quattro.variable} bg-black font-roboto`}>
         {/* <SplashScreen /> */}
+        <GoogleAnalytics id="G-QVTRG6X663" />
         <Navbar />
         <main className="pt-24 sm:pt-28 lg:pt-32">
           {children}
