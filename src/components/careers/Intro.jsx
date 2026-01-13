@@ -26,7 +26,7 @@ const Intro = () => {
   return (
     <div
       className="fixed inset-0 w-full h-screen flex flex-col justify-center items-center bg-black overflow-hidden z-10 pointer-events-none"
-      style={{ opacity }}
+      style={{ opacity, visibility: opacity < 0.01 ? "hidden" : "visible" }}
     >
       {/* Text Content (keeps clicks active inside) */}
       <div className="relative z-20 pointer-events-auto max-w-3xl px-6 text-center">

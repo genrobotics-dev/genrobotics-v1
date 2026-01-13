@@ -81,7 +81,7 @@ const SeoPage = () => {
                     <div className="seo-gradient-bg"></div>
                     <div className="container mx-auto px-4 relative z-10">
                         <h1 className="seo-heading">
-                            {"Rehabilitation Robotics, Redefining Mobility, Recovery and Human Dignity".split(" ").map((word, index) => (
+                            {"Rehabilitation Robotics - Redefining Mobility, Recovery & Human Dignity".split(" ").map((word, index) => (
                                 <motion.span
                                     key={index}
                                     initial={{ opacity: 0, y: 20 }}

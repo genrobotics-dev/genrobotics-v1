@@ -43,7 +43,7 @@ const Gallery = () => {
   };
 
   return (
-    <section className="lifeAt_sec overflow-hidden section flex flex-col justify-center items-center">
+    <section className="relative lifeAt_sec overflow-hidden section flex flex-col justify-center items-center">
       <div className="wrapper_ w-full max-w-[1400px] mx-auto text-center space-y-4">
         <h2 className="font-anton text-white text-2xl md:text-3xl lg:text-4xl">
           Life At <span className="text-[#FCD901]">Genrobotics</span>

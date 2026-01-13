@@ -59,7 +59,7 @@ const Page = async () => {
             <Intro />
 
             {/* Content below hero (overlaps it on scroll) */}
-            <div className="relative z-0 pt-[100vh]">
+            <div className="relative z-20 pt-[100vh]">
                 <Suspense fallback={<div className="text-white text-center py-20">Loading articles...</div>}>
                     <Blogs />
                 </Suspense>

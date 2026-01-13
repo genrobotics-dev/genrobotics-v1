@@ -54,12 +54,12 @@ const Articles = () => {
   };
 
   return (
-    <section className="relative z-20 py-8 sm:py-12 space-y-6 sm:space-y-8 section px-4 sm:px-6 pointer-events-none">
-      <h2 className="font-anton text-white text-2xl sm:text-3xl md:text-4xl" style={{ cursor: 'text', pointerEvents: 'auto' }}>
+    <section className="relative z-20 py-8 sm:py-12 space-y-6 sm:space-y-8 section px-4 sm:px-6">
+      <h2 className="font-anton text-white text-2xl sm:text-3xl md:text-4xl">
         Latest <span className="text-[#FCD901]">Coverage</span>
       </h2>
 
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 sm:gap-8 pointer-events-auto">
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 sm:gap-8">
         {articles.length === 0 ? (
           <div className="col-span-full flex flex-col items-center justify-center text-center py-16">
             <h2 className="text-white text-lg sm:text-xl mt-6">

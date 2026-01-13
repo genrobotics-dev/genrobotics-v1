@@ -58,7 +58,7 @@ export default function Page() {
             <Intro />
 
             {/* Content below */}
-            <div className="relative z-0 pt-[100vh]">
+            <div className="relative z-20 pt-[100vh]">
                 <Suspense fallback={<div className="text-white text-center py-20">Loading case studies...</div>}>
                     <CaseStudy />
                 </Suspense>

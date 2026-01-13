@@ -162,12 +162,12 @@ const Footer = () => {
             <div className="flex justify-between items-center pt-4">
               <div className="flex-1 flex gap-8">
                 <div className="w-fit mx-auto flex gap-8">
-                  <p className="text-white font-thin text-sm cursor-pointer">
+                  <Link href="/terms-conditions" className="text-white font-thin text-sm cursor-pointer decoration-0">
                     Terms & Conditions
-                  </p>
-                  <p className="text-white font-thin text-sm cursor-pointer">
-                    Legal Terms
-                  </p>
+                  </Link>
+                  <Link href="/privacy-policy" className="text-white font-thin text-sm cursor-pointer decoration-0">
+                    Privacy Policy
+                  </Link>
                 </div>
               </div>
               <div className="flex-1"></div>
@@ -285,11 +285,11 @@ const Footer = () => {
           </div>
         </div>
         <div className="flex justify-between">
-          <p className="text-[8px] text-white font-thin">Terms & Conditions</p>
+          <Link href="/terms-conditions" className="text-[8px] text-white font-thin decoration-0">Terms & Conditions</Link>
           <p className="text-[8px] text-white font-thin">
             © 2025 Genrobotic Innovations Pvt. Ltd.
           </p>
-          <p className="text-[8px] text-white font-thin">Privacy Policy</p>
+          <Link href="/privacy-policy" className="text-[8px] text-white font-thin decoration-0">Privacy Policy</Link>
         </div>
       </div>
     </footer>

@@ -59,7 +59,7 @@ export default function News() {
       <Intro />
 
       {/* Content starts below the hero */}
-      <div className="relative z-0 pt-[100vh]">
+      <div className="relative z-20 pt-[100vh]">
         <TopStories />
         <Articles />
       </div>

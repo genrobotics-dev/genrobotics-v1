@@ -62,14 +62,14 @@ export default function CaseStudiesPage() {
     }
 
     return (
-        <section className="relative z-20 max-w-6xl mx-auto px-6 py-16 pointer-events-none">
+        <section className="relative z-20 max-w-6xl mx-auto px-6 py-16">
             {caseStudies.length === 0 ? (
                 <div className="flex flex-col items-center justify-center text-center py-16">
-                    <h3 className="text-white text-xl mt-6" style={{ cursor: 'text', pointerEvents: 'auto' }}>Nothing to display here yet. </h3>
-                    <p className="text-gray-400 mt-2" style={{ cursor: 'text', pointerEvents: 'auto' }}>Explore again soon for our project highlights</p>
+                    <h3 className="text-white text-xl mt-6">Nothing to display here yet. </h3>
+                    <p className="text-gray-400 mt-2">Explore again soon for our project highlights</p>
                 </div>
             ) : (
-                <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-10" style={{ pointerEvents: 'auto' }}>
+                <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-10">
                     {caseStudies.map((cs) => (
                         <div
                             key={cs.id}

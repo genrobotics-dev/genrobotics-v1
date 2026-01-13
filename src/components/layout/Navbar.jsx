@@ -55,7 +55,7 @@ const Navbar = () => {
   if (!mounted) return null;
 
   return (
-    <nav className="fixed top-0 w-full z-20 px-4 sm:px-8 lg:px-12 py-4 sm:py-6 lg:py-8 flex items-center justify-between bg-black/80 transition-all duration-300">
+    <nav className="fixed top-0 w-full z-[100] px-4 sm:px-8 lg:px-12 py-4 sm:py-6 lg:py-8 flex items-center justify-between bg-black/80 transition-all duration-300">
       {/* Logo */}
       <a href="https://genrobotics.com" aria-label="Genrobotics homepage" className="flex-shrink-0">
         <Image
@@ -172,8 +172,8 @@ const Navbar = () => {
       {/* Mobile Menu Modal */}
       <div
         className={`fixed inset-0 flex items-start justify-center bg-black/70 z-40 transition-opacity duration-300 ${isOpen
-            ? "opacity-100 pointer-events-auto"
-            : "opacity-0 pointer-events-none"
+          ? "opacity-100 pointer-events-auto"
+          : "opacity-0 pointer-events-none"
           }`}
       >
         <div className="relative rounded-xl h-dvh w-11/12 max-w-md p-8 flex flex-col justify-center space-y-6 text-center bg-black/80 border border-gray-700/50 shadow-2xl">

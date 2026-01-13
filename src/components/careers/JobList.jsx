@@ -1,9 +1,14 @@
 "use client";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Link from "next/link";
 
 const JobList = ({ jobs, itemsPerPage = 6 }) => {
   const [currentPage, setCurrentPage] = useState(1);
+
+  // Reset to first page when jobs list changes (e.g. new search)
+  useEffect(() => {
+    setCurrentPage(1);
+  }, [jobs]);
   const totalPages = Math.ceil(jobs.length / itemsPerPage);
   const startIndex = (currentPage - 1) * itemsPerPage;
   const endIndex = startIndex + itemsPerPage;
@@ -35,7 +40,7 @@ const JobList = ({ jobs, itemsPerPage = 6 }) => {
         {currentJobs.map((job) => (
           <div
             key={job.id}
-            className="flex flex-col justify-between rounded-xl p-6 bg-gradient-to-br from-[#1A1A1A] to-[#000000] border border-[#FCD901]/30 transition duration-300 hover:shadow-lg hover:shadow-[#FCD901]/40 h-full"
+            className="relative z-30 flex flex-col justify-between rounded-xl p-6 bg-gradient-to-br from-[#1A1A1A] to-[#000000] border border-[#FCD901]/30 transition duration-300 hover:shadow-lg hover:shadow-[#FCD901]/40 h-full cursor-pointer"
           >
             <div className="flex flex-col gap-1">
               <h3 className="font-semibold text-lg sm:text-xl text-[#FCD901] group-hover:text-white transition">
@@ -61,12 +66,13 @@ const JobList = ({ jobs, itemsPerPage = 6 }) => {
 
       {/* Pagination */}
       {totalPages > 1 && (
-        <div className="flex justify-center items-center mt-8 gap-1 px-2">
+        <div className="relative z-30 flex justify-center items-center mt-8 gap-1 px-2 pointer-events-auto">
           {/* Prev Button */}
           <button
+            type="button"
             onClick={() => handlePageChange(currentPage - 1)}
             disabled={currentPage === 1}
-            className="px-3 py-1 rounded border border-gray-400 text-gray-400 disabled:opacity-50"
+            className="px-3 py-1 rounded border border-gray-400 text-gray-400 disabled:opacity-50 cursor-pointer disabled:cursor-not-allowed select-none transition-colors hover:border-[#FCD901] hover:text-[#FCD901] disabled:hover:border-gray-400 disabled:hover:text-gray-400"
           >
             Prev
           </button>
@@ -76,12 +82,12 @@ const JobList = ({ jobs, itemsPerPage = 6 }) => {
             {Array.from({ length: totalPages }, (_, i) => i + 1).map((page) => (
               <button
                 key={page}
+                type="button"
                 onClick={() => handlePageChange(page)}
-                className={`px-3 py-1 rounded border text-sm ${
-                  currentPage === page
-                    ? "bg-[#FCD901] text-black border-[#FCD901]"
-                    : "text-gray-400 border-gray-400"
-                }`}
+                className={`px-3 py-1 rounded border text-sm cursor-pointer select-none ${currentPage === page
+                  ? "bg-[#FCD901] text-black border-[#FCD901]"
+                  : "text-gray-400 border-gray-400 hover:border-[#FCD901] hover:text-[#FCD901]"
+                  } transition-colors`}
               >
                 {page}
               </button>
@@ -91,17 +97,19 @@ const JobList = ({ jobs, itemsPerPage = 6 }) => {
           {/* Mobile: ellipsis pagination */}
           <div className="flex sm:hidden gap-1">
             {getMobilePages().map((page, idx) =>
-              page === '...' ? (
-                <span key={idx} className="px-2 py-1 text-gray-400">…</span>
+              page === "..." ? (
+                <span key={idx} className="px-2 py-1 text-gray-400 cursor-default select-none">
+                  …
+                </span>
               ) : (
                 <button
                   key={idx}
+                  type="button"
                   onClick={() => handlePageChange(page)}
-                  className={`px-3 py-1 rounded border text-sm ${
-                    currentPage === page
-                      ? "bg-[#FCD901] text-black border-[#FCD901]"
-                      : "text-gray-400 border-gray-400"
-                  }`}
+                  className={`px-3 py-1 rounded border text-sm cursor-pointer select-none ${currentPage === page
+                    ? "bg-[#FCD901] text-black border-[#FCD901]"
+                    : "text-gray-400 border-gray-400 hover:border-[#FCD901] hover:text-[#FCD901]"
+                    } transition-colors`}
                 >
                   {page}
                 </button>
@@ -111,9 +119,10 @@ const JobList = ({ jobs, itemsPerPage = 6 }) => {
 
           {/* Next Button */}
           <button
+            type="button"
             onClick={() => handlePageChange(currentPage + 1)}
             disabled={currentPage === totalPages}
-            className="px-3 py-1 rounded border border-gray-400 text-gray-400 disabled:opacity-50"
+            className="px-3 py-1 rounded border border-gray-400 text-gray-400 disabled:opacity-50 cursor-pointer disabled:cursor-not-allowed select-none transition-colors hover:border-[#FCD901] hover:text-[#FCD901] disabled:hover:border-gray-400 disabled:hover:text-gray-400"
           >
             Next
           </button>
