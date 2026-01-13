@@ -16,7 +16,7 @@ const JobSearch = () => {
   }, [filteredJobs]);
 
   return (
-    <section className="relative section py-24 z-40">
+    <div className="relative section py-24 z-40">
       <h2 className="font-anton text-white text-center">
         Begin Your Search{" "}
         <span className="text-[#FCD901] block md:inline">
@@ -55,7 +55,7 @@ const JobSearch = () => {
           referrerPolicy="no-referrer-when-downgrade"
         ></iframe>
       </div> */}
-    </section>
+    </div>
   );
 };
 

@@ -37,7 +37,7 @@ const verticalsData = [
     desc: "This division is revolutionizing physical medicine and rehabilitation with advanced technologies like robotic gait trainers and upper-body robotic rehabilitation systems, helping individuals regain mobility and independence.",
     img: "/home/medical-mobility.webp",
     gradient: "bg-gradient-to-t from-[#FCD901] to-[#ffffff00]",
-    link: "https://genroboticsmedical.com/",
+    link: "https://medical.genrobotics.com/",
   },
   {
     title: "OIL & GAS",
@@ -171,6 +171,7 @@ const Verticals = () => {
                           <Link
                             href={vertical.link}
                             aria-label={`Learn more about ${vertical.title}`}
+                            target="_blank"
                             className="bg-[#FCD901] justify-center px-4 py-2 text-xs my-4 inline-flex items-center rounded-sm w-fit"
                           >
                             Learn more <span className="ml-1">→</span>

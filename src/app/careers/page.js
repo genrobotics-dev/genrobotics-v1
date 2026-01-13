@@ -62,7 +62,9 @@ export default function Careers() {
       {/* Rest of the content starts below */}
       <div className="relative z-20 pt-[100vh]">
         <Strength />
-        <JobSearch />
+        <section id="job-search">
+          <JobSearch />
+        </section>
         {/* <CandidatePortal /> */}
         <Gallery />
       </div>
