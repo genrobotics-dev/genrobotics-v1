@@ -37,7 +37,7 @@ export async function generateMetadata() {
         ? `${primaryKeywords}, ${secondaryKeywords}`
         : "",
       alternates: {
-        canonical: "https://genrobotics.com/about",
+        canonical: "https://www.genrobotics.com/about",
       },
       openGraph: {
         title,
@@ -51,7 +51,7 @@ export async function generateMetadata() {
       description: "The expert robot makers in India. We rank high among robot manufacturing companies in India for our ethical and transformative robotic solutions..",
       keywords: "",
       alternates: {
-        canonical: "https://genrobotics.com/about",
+        canonical: "https://www.genrobotics.com/about",
       },
     };
   }

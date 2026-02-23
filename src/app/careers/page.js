@@ -33,7 +33,7 @@ export async function generateMetadata() {
         ? `${primaryKeywords}, ${secondaryKeywords}`
         : "",
       alternates: {
-        canonical: "https://genrobotics.com/careers",
+        canonical: "https://www.genrobotics.com/careers",
       },
       openGraph: {
         title,

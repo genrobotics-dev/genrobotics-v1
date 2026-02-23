@@ -51,7 +51,7 @@ const verticalsData = [
     desc: "R&D is our advanced research hub, exploring future-ready technologies including bipedal walking, humanoid and semi-humanoid robotics, and other innovations shaping the next generation of robotics.",
     img: "/home/robotics.webp",
     gradient: "bg-gradient-to-t from-[#FCD901] to-[#ffffff00]",
-    link: "",
+    link: "http://research.genrobotics.com/",
   },
 ];
 
@@ -177,9 +177,12 @@ const Verticals = () => {
                             Learn more <span className="ml-1">→</span>
                           </Link>
                         ) : (
-                          <p className="bg-[#FCD901] justify-center px-4 py-2 text-xs my-4 inline-flex items-center rounded-sm cursor-pointer w-fit">
+                          <button
+                            type="button"
+                            className="bg-[#FCD901] justify-center px-4 py-2 text-xs my-4 inline-flex items-center rounded-sm cursor-pointer select-none w-fit"
+                          >
                             Learn more <span className="ml-1">→</span>
-                          </p>
+                          </button>
                         )}
                       </div>
                     </div>
@@ -223,16 +226,19 @@ const Verticals = () => {
                   {vertical.link ? (
                     <Link
                       href={vertical.link}
-                      aria-label="Learn more about {vertical.title}"
+                      aria-label={`Learn more about ${vertical.title}`}
                       aria-describedby="new-window-learn-more"
                       className="bg-[#C5A341] justify-center px-4 py-2 text-xs my-4 inline-flex items-center rounded-sm w-fit mx-auto"
                     >
                       Learn more <span className="ml-1">→</span>
                     </Link>
                   ) : (
-                    <p className="bg-[#C5A341] justify-center px-4 py-2 text-xs my-4 inline-flex items-center rounded-sm cursor-pointer w-fit mx-auto">
+                    <button
+                      type="button"
+                      className="bg-[#C5A341] justify-center px-4 py-2 text-xs my-4 inline-flex items-center rounded-sm cursor-pointer select-none w-fit mx-auto"
+                    >
                       Learn more <span className="ml-1">→</span>
-                    </p>
+                    </button>
                   )}
                 </div>
               </div>

@@ -29,7 +29,7 @@ export async function generateMetadata() {
                 ? `${primaryKeywords}, ${secondaryKeywords}`
                 : "",
             alternates: {
-                canonical: "https://genrobotics.com/case-study",
+                canonical: "https://www.genrobotics.com/case-study",
             },
             openGraph: {
                 title: meta_title,
@@ -43,7 +43,7 @@ export async function generateMetadata() {
             description: "Discover robotics case studies that highlight Genrobotics' impact across industries. Learn how our robotic solutions drive efficiency, safety, and social transformation..",
             keywords: "",
             alternates: {
-                canonical: "https://genrobotics.com/case-study",
+                canonical: "https://www.genrobotics.com/case-study",
             },
         };
     }

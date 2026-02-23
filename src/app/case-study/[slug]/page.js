@@ -19,7 +19,7 @@ export async function generateMetadata({ params }) {
         title: "Case Study Not Found | Genrobotics",
         description: "The requested case study could not be found.",
         alternates: {
-          canonical: `https://genrobotics.com/case-study/${resolvedParams.slug}`,
+          canonical: `https://www.genrobotics.com/case-study/${resolvedParams.slug}`,
         },
       };
     }
@@ -49,7 +49,7 @@ export async function generateMetadata({ params }) {
       description: meta_description || caseStudySummary || `Read about ${caseStudyTitle} - a Genrobotics case study showcasing robotics solutions and success stories.`,
       keywords,
       alternates: {
-        canonical: `https://genrobotics.com/case-study/${resolvedParams.slug}`,
+        canonical: `https://www.genrobotics.com/case-study/${resolvedParams.slug}`,
       },
       openGraph: {
         title: seo_title || `${caseStudyTitle} | Genrobotics Case Study`,
@@ -77,7 +77,7 @@ export async function generateMetadata({ params }) {
       description: "Read robotics case studies and success stories from Genrobotics.",
       keywords: "robotics case studies, robotics success stories, robotics solutions, robotics implementation, robotics projects, robotics applications, robotics impact, robotics transformation, Genrobotics case studies",
       alternates: {
-        canonical: `https://genrobotics.com/case-study/${resolvedParams.slug}`,
+        canonical: `https://www.genrobotics.com/case-study/${resolvedParams.slug}`,
       },
     };
   }

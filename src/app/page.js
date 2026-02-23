@@ -69,7 +69,7 @@ export async function generateMetadata() {
       description,
       keywords,
       alternates: {
-        canonical: "https://genrobotics.com",
+        canonical: "https://www.genrobotics.com",
       },
       openGraph: {
         title,
@@ -104,7 +104,7 @@ export async function generateMetadata() {
         "robotic solutions provider"
       ].join(", "),
       alternates: {
-        canonical: "https://genrobotics.com",
+        canonical: "https://www.genrobotics.com",
       },
     };
   }
@@ -115,8 +115,8 @@ export default function Home() {
     "@context": "https://schema.org",
     "@type": "Organization",
     name: "Genrobotic Innovations Pvt Ltd",
-    url: "https://genrobotics.com",
-    logo: "https://genrobotics.com/path/to/logo.png",
+    url: "https://www.genrobotics.com",
+    logo: "https://www.genrobotics.com/path/to/logo.png",
     description:
       "Genrobotics pioneers advanced robotic solutions engineered for the most hazardous environments where human life is at stake.",
     address: {
