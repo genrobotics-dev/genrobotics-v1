@@ -3,9 +3,44 @@ const nextConfig = {
   output: "export", // static build
   reactStrictMode: true,
   productionBrowserSourceMaps: false,
-  trailingSlash: true, // 👈 required for AWS S3/CloudFront hosting
+  trailingSlash: true, // required for AWS S3/CloudFront hosting
   images: {
     unoptimized: true, // required when using <Image /> with static export
+  },
+  async redirects() {
+    return [
+      {
+        source: "/blogs/bandicootrobot/",
+        destination: "https://sanitation.genrobotics.com/bandicoot/",
+        permanent: true,
+      },
+      {
+        source: "/ProductPages/bandicoot",
+        destination: "https://sanitation.genrobotics.com/bandicoot/",
+        permanent: true,
+      },
+      {
+        source: "/ProductPages/bandicoot-mobility-plus",
+        destination: "https://sanitation.genrobotics.com/mobility+/",
+        permanent: true,
+      },
+      {
+        source: "/ProductPages/g-crow-new",
+        destination: "https://sanitation.genrobotics.com/gcrow/",
+        permanent: true,
+      },
+      {
+        source: "/Genrobotic",
+        destination: "https://genrobotics.com/",
+        permanent: true,
+      },
+      {
+        source: "/career",
+        destination: "https://genrobotics.com/careers/",
+        permanent: true,
+      },
+
+    ];
   },
 
   //   headers: async () => [

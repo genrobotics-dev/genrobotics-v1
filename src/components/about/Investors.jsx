@@ -42,7 +42,7 @@ const investorsData = [
 
 const Investors = () => {
   const [SlideToShow, setSlideToShow] = useState(1);
-  
+
   const settings = {
     dots: true,
     arrows: false,
@@ -60,7 +60,7 @@ const Investors = () => {
       { breakpoint: 1280, settings: { slidesToShow: 2 } },
       { breakpoint: 768, settings: { slidesToShow: 1 } },
     ],
-  appendDots: dots => (
+    appendDots: dots => (
       <div className="flex justify-center">
         <ul className="flex space-x-2 justify-center mt-8">{dots}</ul>
       </div>
@@ -99,7 +99,7 @@ const Investors = () => {
     // Cleanup
     return () => window.removeEventListener("resize", updateSlides);
   }, []);
-  
+
   return (
     <section className="section py-4 relative bg-black">
       {/* Heading */}

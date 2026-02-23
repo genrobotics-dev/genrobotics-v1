@@ -66,7 +66,7 @@ export async function generateMetadata({ params }) {
         title: "Blog Post Not Found | Genrobotics",
         description: "The requested blog post could not be found.",
         alternates: {
-          canonical: `https://genrobotics.com/blogs/${resolvedParams.slug}`,
+          canonical: `https://www.genrobotics.com/blogs/${resolvedParams.slug}`,
         },
       };
     }
@@ -88,7 +88,7 @@ export async function generateMetadata({ params }) {
       description: meta_description || blogSummary || `Read about ${blogTitle} on the Genrobotics blog. Discover insights into robotics innovation and technology.`,
       keywords,
       alternates: {
-        canonical: `https://genrobotics.com/blogs/${resolvedParams.slug}`,
+        canonical: `https://www.genrobotics.com/blogs/${resolvedParams.slug}`,
       },
       openGraph: {
         title: seo_title || `${blogTitle} | Genrobotics Blog`,
@@ -116,7 +116,7 @@ export async function generateMetadata({ params }) {
       description: "Read robotics insights and articles on the Genrobotics blog.",
       keywords: "robotics blog, robotics articles, robotics insights, robotics technology, AI robotics, robotic engineering, robotics innovation, Genrobotics blog",
       alternates: {
-        canonical: `https://genrobotics.com/blogs/${resolvedParams.slug}`,
+        canonical: `https://www.genrobotics.com/blogs/${resolvedParams.slug}`,
       },
     };
   }

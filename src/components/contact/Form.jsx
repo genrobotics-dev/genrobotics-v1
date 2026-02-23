@@ -20,39 +20,40 @@ const Form = () => {
   };
 
   const handleSubmit = async (e) => {
-    e.preventDefault();
-    const firstName = e.target[0].value;
-    const lastName = e.target[1].value;
-    const email = e.target[2].value;
-    const message = e.target[3].value;
+  e.preventDefault();
+  setLoading(true);
 
-    const toValidate = { firstName, lastName, email, message };
-    const clientErrors = validate(toValidate);
-    setErrors(clientErrors);
-    if (Object.keys(clientErrors).length > 0) return;
+  const formData = new FormData(e.target);
+  const formDataBody = new URLSearchParams();
 
-    setLoading(true);
-    try {
-      const externalUrl = process.env.NEXT_PUBLIC_SENDMAIL_URL || "/api/sendMail";
-      const res = await fetch(externalUrl, {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(toValidate),
-      });
+  // MUST match the Tab Name in your Google Sheet exactly
+  formDataBody.append("formName", "Contact Form"); 
 
-      const data = await res.json().catch(() => ({}));
-      if (!res.ok) throw new Error(data.message || "Failed to send message");
+  // Mapping to image_4264b5.png headers
+  formDataBody.append("Timestamp", new Date().toLocaleString());
+  formDataBody.append("First Name", formData.get("firstName"));
+  formDataBody.append("Last Name", formData.get("lastName"));
+  formDataBody.append("Email", formData.get("email"));
+  formDataBody.append("Message", formData.get("message"));
 
-      alert(data.message || "Message sent");
-      e.target.reset();
-      setErrors({});
-    } catch (error) {
-      alert(error.message || "Error sending message");
-    } finally {
-      setLoading(false);
-    }
-  };
+  try {
+    const scriptURL = process.env.NEXT_PUBLIC_GOOGLE_SHEET_URL;
+    await fetch(scriptURL, {
+      method: 'POST',
+      mode: 'no-cors', // Keeps redirect errors from stopping the code
+      headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+      body: formDataBody.toString()
+    });
 
+    alert('Message sent successfully!');
+    e.target.reset(); // Clears the form
+  } catch (err) {
+    console.error("Submission Error:", err);
+    alert("Failed to send. Please check your connection.");
+  } finally {
+    setLoading(false);
+  }
+};
   return (
     <section className="px-4 md:px-12 py-16">
       <div className="flex flex-col lg:flex-row gap-8">

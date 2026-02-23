@@ -30,7 +30,7 @@ export async function generateMetadata() {
                 ? `${primaryKeywords}, ${secondaryKeywords}`
                 : "",
             alternates: {
-                canonical: "https://genrobotics.com/blogs",
+                canonical: "https://www.genrobotics.com/blogs",
             },
             openGraph: {
                 title,
@@ -44,7 +44,7 @@ export async function generateMetadata() {
             description: "Discover expert robotics articles covering AI, automation, and robotic engineering. Read Genrobotics insights on how robotics is transforming industries and lives.",
             keywords: "",
             alternates: {
-                canonical: "https://genrobotics.com/blogs",
+                canonical: "https://www.genrobotics.com/blogs",
             },
         };
     }

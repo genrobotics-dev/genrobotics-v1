@@ -7,6 +7,8 @@ import { roboto, anton, quattro } from './fonts';
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
 import BackToTop from "@/components/layout/BackToTop";
+import Script from "next/script";
+
 import { GoogleAnalytics } from '@next/third-parties/google'
 export const metadata = {
   title: "Genrobotics | Robotics & AI Solutions for Sanitation, Healthcare & Industrial Sectors",
@@ -18,7 +20,8 @@ export default function RootLayout({ children }) {
     <html lang="en">
       <head>
         <link rel="icon" type="image/png" href="/favicon.png" sizes="48x48" />
-        <meta name="viewport" content="width=device-width, initial-scale=1" />  
+        <meta name="msvalidate.01" content="1F80B934032F619762C19EE278BDA3CE" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
         <meta name="referrer" content="strict-origin-when-cross-origin" />
         <script
           type="application/ld+json"
@@ -26,11 +29,47 @@ export default function RootLayout({ children }) {
             __html: JSON.stringify({
               "@context": "https://schema.org",
               "@type": "Organization",
-              "url": "https://genrobotics.com/",
-              "logo": "https://genrobotics.com/favicon.ico",
+              "url": "https://www.genrobotics.com/",
+              "logo": "https://www.genrobotics.com/favicon.ico",
+              "subOrganization": [
+                {
+                  "@type": "Organization",
+                  "name": "Sanitation",
+                  "url": "https://www.sanitation.genrobotics.com"
+                },
+                {
+                  "@type": "Organization",
+                  "name": "Medical and Mobility",
+                  "url": "https://www.medical.genrobotics.com"
+                },
+                {
+                  "@type": "Organization",
+                  "name": "Research and Development",
+                  "url": "https://www.research.genrobotics.com"
+                },
+                {
+                  "@type": "Organization",
+                  "name": "Genrobotics Foundation",
+                  "url": "https://www.genroboticsfoundation.com"
+                }
+              ]
             }),
           }}
         />
+        <Script
+          src="https://www.googletagmanager.com/gtag/js?id=G-QVTRG6X663"
+          strategy="afterInteractive"
+        />
+        <Script id="ga-init" strategy="afterInteractive">
+          {`
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+            gtag('config', 'G-QVTRG6X663', {
+              page_path: window.location.pathname,
+            });
+          `}
+        </Script>
       </head>
       <body className={`${roboto.variable} ${anton.variable} ${quattro.variable} bg-black font-roboto`}>
         {/* <SplashScreen /> */}

@@ -2,35 +2,67 @@
 import React, { useState } from "react";
 
 function VendorForm() {
-  const [formData, setFormData] = useState({
-    name: "",
-    organization: "",
-    designation: "",
-    email: "",
-    phone: "",
-    city: "",
-    state: "",
-    country: "",
-    interestedIn: [],
-    interestedInOtherText: "",
-    purpose: [],
-    purposeOtherText: "",
-    demoMode: "",
-    message: "",
-  });
+  const [loading, setLoading] = useState(false);
 
-  const handleChange = (e) => {
-    const { name, value } = e.target;
-
-    setFormData((prev) => ({
-      ...prev,
-      [name]: value,
-    }));
-  };
-
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
+    setLoading(true);
+
+    const form = e.target;
+    const formData = new FormData(form);
+
+    // Handle Multi-select checkboxes for "Purpose"
+    const selectedPurposes = formData.getAll("purpose").join(", ");
+
+    const formDataBody = new URLSearchParams();
+
+    // MUST match the Tab Name in your Google Sheet exactly
+    formDataBody.append("formName", "Vendor Form");
+
+    // Mapping to Google Sheet headers
+    formDataBody.append("Timestamp", new Date().toLocaleString());
+    formDataBody.append("Company Name", formData.get("company_name") || "");
+    formDataBody.append("Firm Type", formData.get("typeOfFirm") || "");
+    formDataBody.append("Status", formData.get("statusOfCompany") || "");
+    formDataBody.append("Country", formData.get("country") || "");
+    formDataBody.append("GST No", formData.get("gst") || "");
+    formDataBody.append("PAN No", formData.get("pan") || "");
+    formDataBody.append("Address", formData.get("address") || "");
+    formDataBody.append("City", formData.get("city") || "");
+    formDataBody.append("State", formData.get("state") || "");
+    formDataBody.append("PIN Code", formData.get("pin") || "");
+    formDataBody.append("Email", formData.get("email") || "");
+    formDataBody.append("Phone", formData.get("phone") || "");
+    formDataBody.append("Contact Person Name", formData.get("contact_person") || "");
+    formDataBody.append("Designation", formData.get("designation") || "");
+    formDataBody.append("MSME(Yes/No)", formData.get("msme") || "");
+    formDataBody.append("URL", formData.get("website") || "");
+    formDataBody.append("Interested Item Type", selectedPurposes);
+    formDataBody.append("Company Description", formData.get("description") || "");
+
+    try {
+      const scriptURL = process.env.NEXT_PUBLIC_GOOGLE_SHEET_URL;
+      if (!scriptURL) {
+        throw new Error("Google Sheet URL is not configured.");
+      }
+
+      await fetch(scriptURL, {
+        method: 'POST',
+        mode: 'no-cors',
+        headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+        body: formDataBody.toString()
+      });
+
+      alert('Vendor registration submitted successfully!');
+      form.reset();
+    } catch (err) {
+      console.error("Submission Error:", err);
+      alert("Submission failed. Please try again.");
+    } finally {
+      setLoading(false);
+    }
   };
+
   return (
     <div
       className="container bandicoot-form-section mx-auto"
@@ -51,14 +83,14 @@ function VendorForm() {
               <div className="col-lg-6 col-md-6 col-sm-12">
                 <label>
                   Company Name
-                  <input type="text" name="name" placeholder="Company Name" />
+                  <input type="text" name="company_name" placeholder="Company Name" required />
                 </label>
               </div>
               <div className="col-lg-6 col-md-6 col-sm-12">
                 <label>
                   Type Of the Firm
-                  <select name="typeOfFirm" id="typeOfFirm">
-                    <option selected disabled>
+                  <select name="typeOfFirm" id="typeOfFirm" defaultValue="">
+                    <option value="" disabled>
                       Select Type
                     </option>
                     <option>Public Limited Co</option>
@@ -72,8 +104,8 @@ function VendorForm() {
               <div className="col-lg-6 col-md-6 col-sm-12">
                 <label>
                   Status Of Company
-                  <select name="statusOfCompany" id="statusOfCompany">
-                    <option selected disabled>
+                  <select name="statusOfCompany" id="statusOfCompany" defaultValue="">
+                    <option value="" disabled>
                       Select Status
                     </option>
                     <option>MANUFACTURER</option>
@@ -87,12 +119,13 @@ function VendorForm() {
               <div className="col-lg-6 col-md-6 col-sm-12">
                 <label>
                   Country
-                  <select name="country" id="country">
-                    <option selected disabled>
+                  <select name="country" id="country" defaultValue="">
+                    <option value="" disabled>
                       Select Country
                     </option>
                     <option>India</option>
                     <option>UAE</option>
+                    <option>Other</option>
                   </select>
                 </label>
               </div>
@@ -114,7 +147,7 @@ function VendorForm() {
               <legend className="sr-only">Address</legend>
               <label>
                 Address
-                <textarea name="message" placeholder="" />
+                <textarea name="address" placeholder="Company Address" />
               </label>
 
               <div className="row">
@@ -141,12 +174,6 @@ function VendorForm() {
                     />
                   </label>
                 </div>
-                <div className="col-lg-6 col-md-6 col-sm-12">
-                  <label>
-                    Country
-                    <input type="text" name="country" />
-                  </label>
-                </div>
               </div>
             </fieldset>
             <hr />
@@ -156,7 +183,7 @@ function VendorForm() {
                 <div className="col-lg-6 col-md-6 col-sm-12">
                   <label>
                     Email Address
-                    <input type="email" name="email" placeholder="Email" />
+                    <input type="email" name="email" placeholder="Email" required />
                   </label>
                 </div>
                 <div className="col-lg-6 col-md-6 col-sm-12">
@@ -166,6 +193,7 @@ function VendorForm() {
                       type="tel"
                       name="phone"
                       placeholder="Mobile Number"
+                      required
                     />
                   </label>
                 </div>
@@ -174,7 +202,7 @@ function VendorForm() {
                     Contact Person
                     <input
                       type="text"
-                      name="pin"
+                      name="contact_person"
                       placeholder="Name of the Contact Person"
                       required
                     />
@@ -185,7 +213,7 @@ function VendorForm() {
                     Designation
                     <input
                       type="text"
-                      name="country"
+                      name="designation"
                       placeholder="Designation of the Contact Person"
                     />
                   </label>
@@ -193,7 +221,7 @@ function VendorForm() {
                 <div className="col-lg-6 col-md-6 col-sm-12">
                   <label>
                     Is your Firm MSME ?
-                    <select name="msme" id="msme">
+                    <select name="msme" id="msme" defaultValue="No">
                       <option>Yes</option>
                       <option>No</option>
                     </select>
@@ -204,7 +232,7 @@ function VendorForm() {
                     Website
                     <input
                       type="text"
-                      name="country"
+                      name="website"
                       placeholder="Website URL"
                     />
                   </label>
@@ -335,14 +363,14 @@ function VendorForm() {
             <label>
               Brief Description of Business of your Company
               <textarea
-                name="message"
-                placeholder=""
-                value={formData.message}
-                onChange={handleChange}
+                name="description"
+                placeholder="Brief description..."
               />
             </label>
 
-            <button type="submit">Submit</button>
+            <button type="submit" disabled={loading}>
+              {loading ? "Submitting..." : "Submit"}
+            </button>
           </form>
         </div>
       </div>
@@ -351,3 +379,4 @@ function VendorForm() {
 }
 
 export default VendorForm;
+

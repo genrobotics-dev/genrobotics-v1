@@ -7,10 +7,13 @@ import Link from "next/link";
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false); // mobile menu
   const [resourcesOpen, setResourcesOpen] = useState(false); // desktop dropdown
+  const [verticalsOpen, setVerticalsOpen] = useState(false); // desktop verticals dropdown
   const [mobileResourcesOpen, setMobileResourcesOpen] = useState(false); // mobile dropdown
+  const [mobileVerticalsOpen, setMobileVerticalsOpen] = useState(false); // mobile verticals dropdown
   const [mounted, setMounted] = useState(false);
 
   const dropdownRef = useRef(null);
+  const verticalsDropdownRef = useRef(null);
   const pathname = usePathname();
 
   useEffect(() => {
@@ -20,6 +23,9 @@ const Navbar = () => {
     const handleClickOutside = (event) => {
       if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
         setResourcesOpen(false);
+      }
+      if (verticalsDropdownRef.current && !verticalsDropdownRef.current.contains(event.target)) {
+        setVerticalsOpen(false);
       }
     };
 
@@ -45,6 +51,13 @@ const Navbar = () => {
     }
   };
 
+  const handleVerticalsKeyDown = (event) => {
+    if (event.key === "Enter" || event.key === " ") {
+      event.preventDefault();
+      setVerticalsOpen((s) => !s);
+    }
+  };
+
   const handleMobileResourcesKeyDown = (event) => {
     if (event.key === "Enter" || event.key === " ") {
       event.preventDefault();
@@ -52,7 +65,14 @@ const Navbar = () => {
     }
   };
 
-  if (!mounted) return null;
+  const handleMobileVerticalsKeyDown = (event) => {
+    if (event.key === "Enter" || event.key === " ") {
+      event.preventDefault();
+      setMobileVerticalsOpen((s) => !s);
+    }
+  };
+
+  // if (!mounted) return null;
 
   return (
     <nav className="fixed top-0 w-full z-[100] px-4 sm:px-8 lg:px-12 py-4 sm:py-6 lg:py-8 flex items-center justify-between bg-black/80 transition-all duration-300">
@@ -80,16 +100,53 @@ const Navbar = () => {
           >
             Home
           </Link>
-          <Link
-            href="/#verticals"
-            className="text-white font-thin text-sm sm:text-base cursor-pointer hover:text-[#FCD901]"
+          {/* Desktop Verticals Dropdown */}
+          <div
+            ref={verticalsDropdownRef}
+            className="relative"
+            onMouseEnter={() => setVerticalsOpen(true)}
+            onMouseLeave={() => setVerticalsOpen(false)}
           >
-            Verticals
-          </Link>
+            <button
+              type="button"
+              aria-haspopup="menu"
+              aria-expanded={verticalsOpen}
+              aria-controls="verticals-menu"
+              onClick={() => setVerticalsOpen((s) => !s)}
+              onKeyDown={handleVerticalsKeyDown}
+              className="text-white font-thin text-sm sm:text-base flex items-center gap-1 cursor-pointer hover:text-[#FCD901] focus:outline-none focus:ring-2 focus:ring-[#FCD901]"
+            >
+              Verticals
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                className={`h-4 w-4 transition-transform ${verticalsOpen ? "rotate-180" : "rotate-0"}`}
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+                aria-hidden="true"
+              >
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+              </svg>
+            </button>
+
+            {verticalsOpen && (
+              <div id="verticals-menu" role="menu" className="absolute left-0 pt-2 w-56 z-50">
+                <div className="bg-[#2b2b2b] rounded-lg shadow-lg py-2">
+                  <a href="https://sanitation.genrobotics.com" onClick={() => setVerticalsOpen(false)} role="menuitem" className="block px-4 py-2 text-sm text-white hover:bg-black/40 cursor-pointer hover:text-[#FCD901]" target="_blank" rel="noopener noreferrer">Sanitation</a>
+                  <a href="https://medical.genrobotics.com" onClick={() => setVerticalsOpen(false)} role="menuitem" className="block px-4 py-2 text-sm text-white hover:bg-black/40 cursor-pointer hover:text-[#FCD901]" target="_blank" rel="noopener noreferrer">Medical and Mobility</a>
+                  <a href="https://research.genrobotics.com" onClick={() => setVerticalsOpen(false)} role="menuitem" className="block px-4 py-2 text-sm text-white hover:bg-black/40 cursor-pointer hover:text-[#FCD901]" target="_blank" rel="noopener noreferrer">Research and Development</a>
+                </div>
+              </div>
+            )}
+          </div>
 
           {/* Desktop Resources Dropdown */}
-          {/* Desktop Resources Dropdown */}
-          <div ref={dropdownRef} className="relative" onMouseEnter={() => setResourcesOpen(true)}>
+          <div
+            ref={dropdownRef}
+            className="relative"
+            onMouseEnter={() => setResourcesOpen(true)}
+            onMouseLeave={() => setResourcesOpen(false)}
+          >
             <button
               type="button"
               aria-haspopup="menu"
@@ -113,10 +170,12 @@ const Navbar = () => {
             </button>
 
             {resourcesOpen && (
-              <div id="resources-menu" role="menu" className="absolute left-0 mt-2 w-40 bg-[#2b2b2b] rounded-lg shadow-lg py-2 z-50">
-                <Link href="/news" onClick={() => setResourcesOpen(false)} role="menuitem" className="block px-4 py-2 text-sm text-white hover:bg-black/40 cursor-pointer hover:text-[#FCD901]">News</Link>
-                <Link href="/case-study" onClick={() => setResourcesOpen(false)} role="menuitem" className="block px-4 py-2 text-sm text-white hover:bg-black/40 cursor-pointer hover:text-[#FCD901]">Case Studies</Link>
-                <Link href="/blogs" onClick={() => setResourcesOpen(false)} role="menuitem" className="block px-4 py-2 text-sm text-white hover:bg-black/40 cursor-pointer hover:text-[#FCD901]">Blogs</Link>
+              <div id="resources-menu" role="menu" className="absolute left-0 pt-2 w-40 z-50">
+                <div className="bg-[#2b2b2b] rounded-lg shadow-lg py-2">
+                  <Link href="/news" onClick={() => setResourcesOpen(false)} role="menuitem" className="block px-4 py-2 text-sm text-white hover:bg-black/40 cursor-pointer hover:text-[#FCD901]">News</Link>
+                  <Link href="/case-study" onClick={() => setResourcesOpen(false)} role="menuitem" className="block px-4 py-2 text-sm text-white hover:bg-black/40 cursor-pointer hover:text-[#FCD901]">Case Studies</Link>
+                  <Link href="/blogs" onClick={() => setResourcesOpen(false)} role="menuitem" className="block px-4 py-2 text-sm text-white hover:bg-black/40 cursor-pointer hover:text-[#FCD901]">Blogs</Link>
+                </div>
               </div>
             )}
           </div>
@@ -205,13 +264,66 @@ const Navbar = () => {
           >
             Home
           </Link>
-          <Link
-            href="/#verticals"
-            className="text-white font-medium text-2xl hover:text-yellow-400 transition-colors"
-            onClick={() => setIsOpen(false)}
-          >
-            Verticals
-          </Link>
+          {/* Mobile Verticals Collapsible */}
+          <div className="relative flex flex-col items-center w-full">
+            <button
+              type="button"
+              onClick={() => setMobileVerticalsOpen(!mobileVerticalsOpen)}
+              aria-expanded={mobileVerticalsOpen}
+              aria-controls="mobile-verticals-menu"
+              onKeyDown={handleMobileVerticalsKeyDown}
+              className="w-full text-white font-medium text-2xl cursor-pointer hover:text-yellow-400 transition-colors text-center relative focus:outline-none focus:ring-2 focus:ring-yellow-400"
+            >
+              Verticals
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                className={`h-5 w-5 transition-transform absolute top-2 right-2 ${mobileVerticalsOpen ? "rotate-180" : "rotate-0"
+                  }`}
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth={2}
+                  d="M19 9l-7 7-7-7"
+                />
+              </svg>
+            </button>
+
+            {mobileVerticalsOpen && (
+              <div id="mobile-verticals-menu" role="menu" className="flex flex-col mt-3 space-y-3">
+                <a
+                  href="https://sanitation.genrobotics.com"
+                  className="text-white font-medium text-xl hover:text-yellow-400 transition-colors"
+                  onClick={() => setIsOpen(false)}
+                  role="menuitem"
+                  target="_blank" rel="noopener noreferrer"
+                >
+                  Sanitation
+                </a>
+                <a
+                  href="https://medical.genrobotics.com"
+                  className="text-white font-medium text-xl hover:text-yellow-400 transition-colors"
+                  onClick={() => setIsOpen(false)}
+                  role="menuitem"
+                  target="_blank" rel="noopener noreferrer"
+                >
+                  Medical and Mobility
+                </a>
+                <a
+                  href="https://research.genrobotics.com"
+                  className="text-white font-medium text-xl hover:text-yellow-400 transition-colors"
+                  onClick={() => setIsOpen(false)}
+                  role="menuitem"
+                  target="_blank" rel="noopener noreferrer"
+                >
+                  Research and Development
+                </a>
+              </div>
+            )}
+          </div>
 
           {/* Mobile Resources Collapsible */}
           <div className="relative flex flex-col items-center w-full">

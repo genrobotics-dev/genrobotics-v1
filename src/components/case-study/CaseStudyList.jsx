@@ -30,13 +30,13 @@ export default function CaseStudyList({ initialCaseStudies, initialTotalPages })
                 page: nextPage,
             });
 
-            const newCaseStudies = response.results.map((c) => ({
-                id: c.id,
-                uid: c.uid,
-                title: cleanText(c.data.title[0]?.text || "Untitled"),
-                summary: cleanText(c.data.summary || ""),
-                image: c.data.image?.url,
-            }));
+         const newCaseStudies = response.results.map((c) => ({
+    id: c.id,
+    uid: c.uid,
+    title: cleanText(prismic.asText(c.data.title) || "Untitled"),
+    summary: cleanText(prismic.asText(c.data.summary) || ""),
+    image: c.data.image?.url,
+}));
 
             if (newCaseStudies.length > 0) {
                 setCaseStudies((prev) => [...prev, ...newCaseStudies]);
@@ -94,7 +94,7 @@ export default function CaseStudyList({ initialCaseStudies, initialTotalPages })
                                         </Link>
                                     </h4>
                                     <p className="text-gray-400 text-sm mb-4 line-clamp-3">
-                                        {cs.summary.slice(0, 120)}...
+                                        {cs?.summary.slice(0, 120)}...
                                     </p>
                                 </div>
 
