@@ -15,7 +15,7 @@ const TopStories = () => {
         const response = await client.getAllByType("articles", {
           filters: [prismic.filter.at("my.articles.featured", true)],
           orderings: [
-            { field: "my.articles.published_date", direction: "desc" },
+            { field: "my.articles.date", direction: "desc" },
           ],
         });
 
@@ -42,12 +42,13 @@ const TopStories = () => {
           articles.map((item, i) => {
             const article = item.data;
             const formattedDate = new Date(
-              article.published_date
+              article.date
             ).toLocaleDateString("en-US", {
               month: "short",
               day: "2-digit",
               year: "numeric",
             });
+console.log(article);
 
             return (
               <div
@@ -58,11 +59,11 @@ const TopStories = () => {
                   w-[280px] sm:w-[320px] md:w-[350px] lg:w-[300px]
                 "
               >
-                {article.image?.url && (
+                {article.article_image?.url && (
                   <div className="relative w-full aspect-[4/3] rounded-lg overflow-hidden">
                     <Image
-                      src={article.image.url}
-                      alt={article.image.alt || article.title}
+                      src={article.article_image?.url}
+                      alt={article.article_image.alt || article.title}
                       fill
                       className="object-cover"
                     />
@@ -71,7 +72,7 @@ const TopStories = () => {
 
                 <div className="flex flex-col flex-grow">
                   <h4 className="text-white leading-5 sm:leading-6 lg:leading-relaxed text-sm sm:text-base lg:text-lg font-semibold line-clamp-3">
-                    {article.title}
+                    {article.article_title}
                   </h4>
                   <div className="flex gap-2 items-center mt-2">
                     <Image
@@ -87,10 +88,10 @@ const TopStories = () => {
                   </div>
                 </div>
 
-                {article.article_link?.url && (
+                {article.link_to_article?.url && (
                   <div className="mt-auto pt-2">
                     <Link
-                      href={article.article_link.url}
+                      href={article.link_to_article.url}
                       target="_blank"
                       aria-describedby={`new-window-${article.id}`}
                       className="bg-[#FCD901] px-3 sm:px-4 py-1 sm:py-1.5 rounded text-black font-medium hover:bg-yellow-400 transition inline-block text-xs sm:text-sm"

@@ -174,7 +174,7 @@ export default async function BlogDetailPage({ params }) {
   const cleanSummary = cleanText(blog.data?.summary || '');
 
   // Fallback priority: section.content -> content -> body (only if NOT slices)
-  const rawContent = blog?.data?.section?.content || blog?.data?.content || blog?.data?.body;
+  const rawContent = blog?.data?.section?.content || blog?.data?.contents || blog?.data?.body;
 
   // Verify it is likely Rich Text (has 'type' but NO 'slice_type')
   const isValidRichText = Array.isArray(rawContent) && rawContent.every(item => item.type && !item.slice_type);
@@ -225,7 +225,7 @@ export default async function BlogDetailPage({ params }) {
 
         {/* Title */}
         <h1 className="text-3xl font-bold mb-6 text-white text-center">
-          {cleanText(blog.data?.title?.[0]?.text) || 'Untitled'}
+          {cleanText(blog.data?.title) || 'Untitled'}
         </h1>
 
         {/* Summary as content block */}

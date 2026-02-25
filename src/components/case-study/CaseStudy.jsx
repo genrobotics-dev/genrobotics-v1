@@ -36,7 +36,7 @@ export default function CaseStudiesPage() {
                 const fetchedStudies = response.results.map((c) => ({
                     id: c.id,
                     uid: c.uid,
-                    title: cleanText(c.data.title[0]?.text || "Untitled"),
+                    title: cleanText(c.data.title || "Untitled"),
                     summary: cleanText(c.data.summary || ""),
                     image: c.data.image?.url,
                 }));

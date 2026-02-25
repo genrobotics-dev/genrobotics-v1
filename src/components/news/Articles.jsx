@@ -17,23 +17,23 @@ const Articles = () => {
       // Fetch articles from Prismic
       const response = await client.get({
         predicates: [prismic.predicate.at("document.type", "articles")],
-        orderings: [{ field: "my.articles.published_date", direction: "desc" }],
+        orderings: [{ field: "my.articles.date", direction: "desc" }],
         pageSize: itemsPerPage,
         page,
       });
-
+      
       // Map data for UI
       const formatted = response.results.map((a) => ({
-        heading: a.data.title || "Untitled",
-        image: a.data.image?.url,
-        date: a.data.published_date
-          ? new Date(a.data.published_date).toLocaleDateString("en-US", {
+        heading: a.data.article_title || "Untitled",
+        image: a.data.article_image?.url,
+        date: a.data.date
+          ? new Date(a.data.date).toLocaleDateString("en-US", {
             month: "short",
             day: "2-digit",
             year: "numeric",
           })
           : "",
-        link: a.data.article_link?.url || null,
+        link: a.data?.link_to_article?.url || null,
       }));
 
       setArticles(formatted);

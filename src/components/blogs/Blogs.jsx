@@ -37,7 +37,7 @@ export default function BlogsPage() {
                 const fetchedBlogs = response.results.map((b) => ({
                     id: b.id,
                     uid: b.uid,
-                    title: cleanText(b.data.title[0]?.text || "Untitled"),
+                    title: cleanText(b.data.title|| "Untitled"),
                     summary: cleanText(b.data.summary || ""),
                     image: b.data.image?.url,
                     last_publication_date: b.last_publication_date,

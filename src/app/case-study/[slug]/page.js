@@ -146,7 +146,7 @@ export default async function CaseStudyDetailPage({ params }) {
 
       {/* Title */}
       <h1 className="text-3xl font-bold mb-6 text-white text-center">
-        {cs.data?.title?.[0]?.text || 'Untitled'}
+        {cs.data?.title || 'Untitled'}
       </h1>
 
       {/* Summary as content block */}
@@ -164,7 +164,7 @@ export default async function CaseStudyDetailPage({ params }) {
       )}
 
       <PrismicRichText
-        field={cs?.data?.section?.content || cs?.data?.content || cs?.data?.body}
+        field={cs?.data?.section?.content || cs?.data?.contents || cs?.data?.body}
         components={serializers}
       />
     </article>
