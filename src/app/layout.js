@@ -56,23 +56,21 @@ export default function RootLayout({ children }) {
             }),
           }}
         />
-        <Script
-          src="https://www.googletagmanager.com/gtag/js?id=G-QVTRG6X663"
-          strategy="afterInteractive"
-        />
-        <Script id="ga-init" strategy="afterInteractive">
+        <Script async src="https://www.googletagmanager.com/gtag/js?id=G-NG8MVT708Z"></Script>
+        <Script>
           {`
-            window.dataLayer = window.dataLayer || [];
-            function gtag(){dataLayer.push(arguments);}
-            gtag('js', new Date());
-            gtag('config', 'G-QVTRG6X663', {
-              page_path: window.location.pathname,
-            });
+          window.dataLayer = window.dataLayer || [];
+          function gtag(){dataLayer.push(arguments);}
+          gtag('js', new Date());
+
+          gtag('config', 'G-NG8MVT708Z');
           `}
         </Script>
       </head>
       <body className={`${roboto.variable} ${anton.variable} ${quattro.variable} bg-black font-roboto`}>
         {/* <SplashScreen /> */}
+        <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-MRRDCDD"
+          height="0" width="0" style={{ display: 'none', visibility: 'hidden' }}></iframe></noscript>
         <GoogleAnalytics id="G-QVTRG6X663" />
         <Navbar />
         <main className="pt-24 sm:pt-28 lg:pt-32">

@@ -23,6 +23,7 @@
     "postmark": "^3.0.0",
     "react": "19.1.0",
     "react-dom": "19.1.0",
+    "react-phone-input-2": "^2.15.1",
     "react-slick": "^0.31.0",
     "sass": "^1.93.2",
     "slick-carousel": "^1.8.1"
