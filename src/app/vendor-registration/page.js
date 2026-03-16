@@ -4,7 +4,7 @@ import React from 'react'
 function page() {
   return (
     <section className="vendor_regist">
-        <VendorForm/>
+      <VendorForm />
     </section>
   )
 }

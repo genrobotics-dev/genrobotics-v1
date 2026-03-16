@@ -1,8 +1,44 @@
 "use client";
 import React, { useState } from "react";
+import PhoneInput from "react-phone-input-2";
+import "react-phone-input-2/lib/style.css";
 
 function VendorForm() {
   const [loading, setLoading] = useState(false);
+  const [errors, setErrors] = useState({});
+  const [phone, setPhone] = useState("");
+
+  const validate = (formData) => {
+    const e = {};
+    const getVal = (key) => formData.get(key) || "";
+
+    if (!getVal("company_name").trim()) e.company_name = "Company Name is required";
+    if (!getVal("typeOfFirm")) e.typeOfFirm = "Type of Firm is required";
+    if (!getVal("statusOfCompany")) e.statusOfCompany = "Status of Company is required";
+    if (!getVal("country")) e.country = "Country is required";
+    if (!getVal("address").trim()) e.address = "Address is required";
+    if (!getVal("city").trim()) e.city = "City is required";
+    if (!getVal("state").trim()) e.state = "State is required";
+
+    const pin = getVal("pin").trim();
+    if (!pin) e.pin = "PIN Code is required";
+    else if (!/^\d{4,10}$/.test(pin)) e.pin = "Enter a valid PIN Code";
+
+    const email = getVal("email").trim();
+    if (!email) e.email = "Email is required";
+    else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) e.email = "Enter a valid email";
+
+    // phone is controlled via state, not FormData
+    if (!phone || phone.trim().length < 7) e.phone = "Mobile Number is required";
+    else if (!/^[\d\s\-().+]{7,20}$/.test(phone)) e.phone = "Enter a valid phone number";
+
+    if (!getVal("contact_person").trim()) e.contact_person = "Contact Person is required";
+
+    const purposes = formData.getAll("purpose");
+    if (purposes.length === 0) e.purpose = "Select at least one option";
+
+    return e;
+  };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -10,6 +46,16 @@ function VendorForm() {
 
     const form = e.target;
     const formData = new FormData(form);
+    // Inject the controlled phone value (with country code) into formData
+    formData.set("phone", phone ? `+${phone}` : "");
+
+    const validationErrors = validate(formData);
+    if (Object.keys(validationErrors).length > 0) {
+      setErrors(validationErrors);
+      setLoading(false);
+      return;
+    }
+    setErrors({});
 
     // Handle Multi-select checkboxes for "Purpose"
     const selectedPurposes = formData.getAll("purpose").join(", ");
@@ -55,6 +101,7 @@ function VendorForm() {
 
       alert('Vendor registration submitted successfully!');
       form.reset();
+      setPhone("");
     } catch (err) {
       console.error("Submission Error:", err);
       alert("Submission failed. Please try again.");
@@ -83,13 +130,14 @@ function VendorForm() {
               <div className="col-lg-6 col-md-6 col-sm-12">
                 <label>
                   Company Name
-                  <input type="text" name="company_name" placeholder="Company Name" required />
+                  <input type="text" name="company_name" placeholder="Company Name" className={errors.company_name ? "border border-red-500" : ""} required />
                 </label>
+                {errors.company_name && <p className="text-red-400 text-sm mt-1">{errors.company_name}</p>}
               </div>
               <div className="col-lg-6 col-md-6 col-sm-12">
                 <label>
                   Type Of the Firm
-                  <select name="typeOfFirm" id="typeOfFirm" defaultValue="">
+                  <select name="typeOfFirm" id="typeOfFirm" defaultValue="" className={errors.typeOfFirm ? "border border-red-500" : ""}>
                     <option value="" disabled>
                       Select Type
                     </option>
@@ -100,11 +148,12 @@ function VendorForm() {
                     <option>Other</option>
                   </select>
                 </label>
+                {errors.typeOfFirm && <p className="text-red-400 text-sm mt-1">{errors.typeOfFirm}</p>}
               </div>
               <div className="col-lg-6 col-md-6 col-sm-12">
                 <label>
                   Status Of Company
-                  <select name="statusOfCompany" id="statusOfCompany" defaultValue="">
+                  <select name="statusOfCompany" id="statusOfCompany" defaultValue="" className={errors.statusOfCompany ? "border border-red-500" : ""}>
                     <option value="" disabled>
                       Select Status
                     </option>
@@ -115,11 +164,12 @@ function VendorForm() {
                     <option>SERVICE PROVIDER</option>
                   </select>
                 </label>
+                {errors.statusOfCompany && <p className="text-red-400 text-sm mt-1">{errors.statusOfCompany}</p>}
               </div>
               <div className="col-lg-6 col-md-6 col-sm-12">
                 <label>
                   Country
-                  <select name="country" id="country" defaultValue="">
+                  <select name="country" id="country" defaultValue="" className={errors.country ? "border border-red-500" : ""}>
                     <option value="" disabled>
                       Select Country
                     </option>
@@ -128,6 +178,7 @@ function VendorForm() {
                     <option>Other</option>
                   </select>
                 </label>
+                {errors.country && <p className="text-red-400 text-sm mt-1">{errors.country}</p>}
               </div>
               <div className="col-lg-6 col-md-6 col-sm-12">
                 <label>
@@ -147,21 +198,24 @@ function VendorForm() {
               <legend className="sr-only">Address</legend>
               <label>
                 Address
-                <textarea name="address" placeholder="Company Address" />
+                <textarea name="address" placeholder="Company Address" className={errors.address ? "border border-red-500" : ""} />
               </label>
+              {errors.address && <p className="text-red-400 text-sm mt-1">{errors.address}</p>}
 
               <div className="row">
                 <div className="col-lg-6 col-md-6 col-sm-12">
                   <label>
                     City
-                    <input type="text" name="city" placeholder="City" />
+                    <input type="text" name="city" placeholder="City" className={errors.city ? "border border-red-500" : ""} />
                   </label>
+                  {errors.city && <p className="text-red-400 text-sm mt-1">{errors.city}</p>}
                 </div>
                 <div className="col-lg-6 col-md-6 col-sm-12">
                   <label>
                     State
-                    <input type="text" name="state" placeholder="State" />
+                    <input type="text" name="state" placeholder="State" className={errors.state ? "border border-red-500" : ""} />
                   </label>
+                  {errors.state && <p className="text-red-400 text-sm mt-1">{errors.state}</p>}
                 </div>
                 <div className="col-lg-6 col-md-6 col-sm-12">
                   <label>
@@ -170,9 +224,11 @@ function VendorForm() {
                       type="text"
                       name="pin"
                       placeholder="PIN Code"
+                      className={errors.pin ? "border border-red-500" : ""}
                       required
                     />
                   </label>
+                  {errors.pin && <p className="text-red-400 text-sm mt-1">{errors.pin}</p>}
                 </div>
               </div>
             </fieldset>
@@ -183,19 +239,33 @@ function VendorForm() {
                 <div className="col-lg-6 col-md-6 col-sm-12">
                   <label>
                     Email Address
-                    <input type="email" name="email" placeholder="Email" required />
+                    <input type="email" name="email" placeholder="Email" className={errors.email ? "border border-red-500" : ""} required />
                   </label>
+                  {errors.email && <p className="text-red-400 text-sm mt-1">{errors.email}</p>}
                 </div>
                 <div className="col-lg-6 col-md-6 col-sm-12">
-                  <label>
-                    Mobile Number
-                    <input
-                      type="tel"
-                      name="phone"
-                      placeholder="Mobile Number"
-                      required
-                    />
-                  </label>
+                  <label>Contact Number*</label>
+                  <PhoneInput
+                    country={"in"}
+                    value={phone}
+                    onChange={(value) => setPhone(value)}
+                    inputProps={{
+                      name: "phone",
+                      required: true,
+                    }}
+                    containerStyle={{ width: "100%" }}
+                    inputStyle={{
+                      width: "100%",
+                      background: "transparent",
+                      color: "inherit",
+                      border: errors.phone ? "1px solid #f87171" : undefined,
+                    }}
+                    buttonStyle={{
+                      background: "transparent",
+                    }}
+                    enableSearch
+                  />
+                  {errors.phone && <p className="text-red-400 text-sm mt-1">{errors.phone}</p>}
                 </div>
                 <div className="col-lg-6 col-md-6 col-sm-12">
                   <label>
@@ -204,9 +274,11 @@ function VendorForm() {
                       type="text"
                       name="contact_person"
                       placeholder="Name of the Contact Person"
+                      className={errors.contact_person ? "border border-red-500" : ""}
                       required
                     />
                   </label>
+                  {errors.contact_person && <p className="text-red-400 text-sm mt-1">{errors.contact_person}</p>}
                 </div>
                 <div className="col-lg-6 col-md-6 col-sm-12">
                   <label>
@@ -242,6 +314,7 @@ function VendorForm() {
             <fieldset>
               <legend>Type of Items Interested for Supply/service*</legend>
               <p className="sr-only">Select all that apply</p>
+              {errors.purpose && <p className="text-red-400 text-sm mb-2">{errors.purpose}</p>}
               <div className="checkbox_item">
                 <label>
                   <input type="checkbox" name="purpose" value="Capital Item" />
