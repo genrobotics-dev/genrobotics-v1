@@ -40,19 +40,27 @@ const verticalsData = [
     link: "https://medical.genrobotics.com/",
   },
   {
-    title: "OIL & GAS",
-    desc: "In this sector, we use robotic solutions for eliminating risks in the oil and gas industries, particularly for hazardous tasks such as confined space cleaning.",
-    img: "/home/oil-gas.webp",
-    gradient: "bg-gradient-to-b from-[#FCD901] to-[#ffffff00]",
-    link: "",
-  },
-  {
     title: "ROBOTICS & AI RESEARCH",
     desc: "R&D is our advanced research hub, exploring future-ready technologies including bipedal walking, humanoid and semi-humanoid robotics, and other innovations shaping the next generation of robotics.",
     img: "/home/robotics.webp",
     gradient: "bg-gradient-to-t from-[#FCD901] to-[#ffffff00]",
     link: "http://research.genrobotics.com/",
   },
+  {
+    title: "DEFENCE & AEROSPACE",
+    desc: "Genrobotics’ defence division develops advanced robotic systems for high-risk operations, including autonomous patrols, reconnaissance, bomb disposal, and handling heavy equipment. These solutions enhance operational efficiency, provide real-time intelligence, and keep personnel safe in challenging environments.",
+    img: "/home/defence-aerospace.webp",
+    gradient: "bg-gradient-to-t from-[#FCD901] to-[#ffffff00]",
+    link: "http://defence.genrobotics.com/",
+  },
+  {
+    title: "OIL & GAS",
+    desc: "In this sector, we use robotic solutions for eliminating risks in the oil and gas industries, particularly for hazardous tasks such as confined space cleaning.",
+    img: "/home/oil-gas.webp",
+    gradient: "bg-gradient-to-b from-[#FCD901] to-[#ffffff00]",
+    link: "",
+  },
+
 ];
 
 const Verticals = () => {
@@ -195,11 +203,11 @@ const Verticals = () => {
       </div>
 
       {/* Desktop grid */}
-      <div className="hidden md:grid md:grid-cols-2 lg:grid-cols-4 gap-4 xl:gap-8 mt-12 xl:mt-24">
+      <div className="hidden md:flex md:flex-wrap md:justify-center gap-4 mt-12 xl:mt-24">
         {verticalsData.map((vertical, index) => (
           <div
             key={index}
-            className="relative min-h-[36rem] 2xl:min-h-[40rem] rounded-xl"
+            className="relative min-h-[36rem] 2xl:min-h-[40rem] rounded-xl w-[calc(33%-2rem)] "
           >
             <div
               className={`absolute inset-0 rounded-xl p-[0.5px] ${vertical.gradient}`}
@@ -228,6 +236,7 @@ const Verticals = () => {
                       href={vertical.link}
                       aria-label={`Learn more about ${vertical.title}`}
                       aria-describedby="new-window-learn-more"
+                      target="_blank"
                       className="bg-[#C5A341] justify-center px-4 py-2 text-xs my-4 inline-flex items-center rounded-sm w-fit mx-auto"
                     >
                       Learn more <span className="ml-1">→</span>
