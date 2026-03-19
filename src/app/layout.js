@@ -56,14 +56,14 @@ export default function RootLayout({ children }) {
             }),
           }}
         />
-        <Script async src="https://www.googletagmanager.com/gtag/js?id=G-NG8MVT708Z"></Script>
+        <Script async src="https://www.googletagmanager.com/gtag/js?id=G-SJJ43HQWRD"></Script>
         <Script>
           {`
           window.dataLayer = window.dataLayer || [];
-          function gtag(){dataLayer.push(arguments);}
-          gtag('js', new Date());
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
 
-          gtag('config', 'G-NG8MVT708Z');
+  gtag('config', 'G-SJJ43HQWRD');
           `}
         </Script>
       </head>

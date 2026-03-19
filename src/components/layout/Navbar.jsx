@@ -132,7 +132,7 @@ const Navbar = () => {
             {verticalsOpen && (
               <div id="verticals-menu" role="menu" className="absolute left-0 pt-2 w-56 z-50">
                 <div className="bg-[#2b2b2b] rounded-lg shadow-lg py-2">
-                  <a href="https://sanitation.genrobotics.com" onClick={() => setVerticalsOpen(false)} role="menuitem" className="block px-4 py-2 text-sm text-white hover:bg-black/40 cursor-pointer hover:text-[#FCD901]" target="_blank" rel="noopener noreferrer">Sanitation-tech</a>
+                  <a href="https://sanitation.genrobotics.com" onClick={() => setVerticalsOpen(false)} role="menuitem" className="block px-4 py-2 text-sm text-white hover:bg-black/40 cursor-pointer hover:text-[#FCD901]" target="_blank" rel="noopener noreferrer">Sanitation Tech</a>
                   <a href="https://medical.genrobotics.com" onClick={() => setVerticalsOpen(false)} role="menuitem" className="block px-4 py-2 text-sm text-white hover:bg-black/40 cursor-pointer hover:text-[#FCD901]" target="_blank" rel="noopener noreferrer">Medical and Mobility</a>
                   <a href="https://research.genrobotics.com" onClick={() => setVerticalsOpen(false)} role="menuitem" className="block px-4 py-2 text-sm text-white hover:bg-black/40 cursor-pointer hover:text-[#FCD901]" target="_blank" rel="noopener noreferrer">Research and Development</a>
                   <a href="https://defence.genrobotics.com" onClick={() => setVerticalsOpen(false)} role="menuitem" className="block px-4 py-2 text-sm text-white hover:bg-black/40 cursor-pointer hover:text-[#FCD901]" target="_blank" rel="noopener noreferrer">Defence and Aerospace</a>
