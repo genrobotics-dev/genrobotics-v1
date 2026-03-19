@@ -4,7 +4,7 @@ import Link from "next/link";
 import { client } from "../../../prismicio";
 import * as prismic from "@prismicio/client";
 import { useSearchParams } from "next/navigation";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 
 // Default items per page
 const ITEMS_PER_PAGE = 6;
@@ -18,6 +18,8 @@ const cleanText = (text) => {
 export default function BlogsPage() {
     const searchParams = useSearchParams();
     const currentPage = parseInt(searchParams.get("page") || "1");
+    const sectionRef = useRef(null);
+    const isInitialMount = useRef(true);
 
     const [blogs, setBlogs] = useState([]);
     const [totalPages, setTotalPages] = useState(1);
@@ -55,6 +57,19 @@ export default function BlogsPage() {
         fetchData();
     }, [currentPage]);
 
+    // Scroll to top of listing section when page changes (skip initial load)
+    useEffect(() => {
+        if (isInitialMount.current) {
+            isInitialMount.current = false;
+            return;
+        }
+        if (sectionRef.current) {
+            const navbarHeight = 100;
+            const sectionTop = sectionRef.current.getBoundingClientRect().top + window.scrollY - navbarHeight;
+            window.scrollTo({ top: sectionTop, behavior: 'smooth' });
+        }
+    }, [currentPage]);
+
     if (loading) {
         return (
             <section className="relative z-20 max-w-6xl mx-auto px-6 py-16 text-center">
@@ -64,7 +79,7 @@ export default function BlogsPage() {
     }
 
     return (
-        <section className="relative z-20 max-w-6xl mx-auto px-6 py-16">
+        <section ref={sectionRef} className="relative z-20 max-w-6xl mx-auto px-6 py-16">
             {blogs.length === 0 ? (
                 <div className="flex flex-col items-center justify-center text-center py-16">
                     <h2 className="text-white text-xl mt-6">No posts yet,</h2>

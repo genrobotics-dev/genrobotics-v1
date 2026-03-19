@@ -2,7 +2,7 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { client } from "../../../prismicio";
 import * as prismic from "@prismicio/client";
 
@@ -11,6 +11,7 @@ const Articles = () => {
   const [currentPage, setCurrentPage] = useState(1);
   const [totalPages, setTotalPages] = useState(1);
   const itemsPerPage = 8;
+  const sectionRef = useRef(null);
 
   const fetchArticles = async (page = 1) => {
     try {
@@ -50,11 +51,19 @@ const Articles = () => {
   }, [currentPage]);
 
   const handlePageChange = (page) => {
-    if (page >= 1 && page <= totalPages) setCurrentPage(page);
+    if (page >= 1 && page <= totalPages) {
+      setCurrentPage(page);
+      // Scroll to top of the articles section with navbar offset
+      if (sectionRef.current) {
+        const navbarHeight = 100;
+        const sectionTop = sectionRef.current.getBoundingClientRect().top + window.scrollY - navbarHeight;
+        window.scrollTo({ top: sectionTop, behavior: 'smooth' });
+      }
+    }
   };
 
   return (
-    <section className="relative z-20 py-8 sm:py-12 space-y-6 sm:space-y-8 section px-4 sm:px-6">
+    <section ref={sectionRef} className="relative z-20 py-8 sm:py-12 space-y-6 sm:space-y-8 section px-4 sm:px-6">
       <h2 className="font-anton text-white text-2xl sm:text-3xl md:text-4xl">
         Latest <span className="text-[#FCD901]">Coverage</span>
       </h2>
