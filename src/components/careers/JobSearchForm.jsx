@@ -13,7 +13,7 @@ const JobSearchForm = ({ onSearch }) => {
 
   const BASE_URL = process.env.NEXT_PUBLIC_PYJAMAHR_API_BASEURL;
   const TOKEN = process.env.NEXT_PUBLIC_PYJAMAHR_API_TOKEN;
-
+  
   // Fetch all jobs (with pagination) at the initial render
   useEffect(() => {
     const fetchJobs = async () => {

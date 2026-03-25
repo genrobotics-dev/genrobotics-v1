@@ -174,9 +174,10 @@ const Navbar = () => {
             {resourcesOpen && (
               <div id="resources-menu" role="menu" className="absolute left-0 pt-2 w-40 z-50">
                 <div className="bg-[#2b2b2b] rounded-lg shadow-lg py-2">
+                  <Link href="/blogs" onClick={() => setResourcesOpen(false)} role="menuitem" className="block px-4 py-2 text-sm text-white hover:bg-black/40 cursor-pointer hover:text-[#FCD901]">Blogs</Link>
                   <Link href="/news" onClick={() => setResourcesOpen(false)} role="menuitem" className="block px-4 py-2 text-sm text-white hover:bg-black/40 cursor-pointer hover:text-[#FCD901]">News</Link>
                   <Link href="/case-study" onClick={() => setResourcesOpen(false)} role="menuitem" className="block px-4 py-2 text-sm text-white hover:bg-black/40 cursor-pointer hover:text-[#FCD901]">Case Studies</Link>
-                  <Link href="/blogs" onClick={() => setResourcesOpen(false)} role="menuitem" className="block px-4 py-2 text-sm text-white hover:bg-black/40 cursor-pointer hover:text-[#FCD901]">Blogs</Link>
+                  <Link href="/press-release" onClick={() => setResourcesOpen(false)} role="menuitem" className="block px-4 py-2 text-sm text-white hover:bg-black/40 cursor-pointer hover:text-[#FCD901]">Press Release</Link>
                 </div>
               </div>
             )}
